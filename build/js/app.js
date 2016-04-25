@@ -22,8 +22,6 @@ $(document).ready(function () {
 
             if ($el.offset().left + $el.outerWidth() + parseInt($desc.css('width')) > $(document).outerWidth()) $desc.css({right: '100%'});
             else $desc.css({left: '100%'});
-            console.log($el.offset().left, $el.outerWidth(), $desc.outerWidth());
-            console.log($(document).outerWidth());
 
             counter = setTimeout(function () {
                 $desc.fadeIn();
@@ -89,47 +87,8 @@ $(document).ready(function () {
             e.preventDefault();
             var $btn = $(this);
             $iframe = $($btn.attr('href'));
-            console.log($iframe);
             $popupIframe.append($iframe);
             $popup.addClass('popup--visible');
         })
     })();
-
-var channels = [];
-$('.tv-channel').each(function () {
-    var $channel = $(this);
-    var channel = {};
-    channel.name = $channel.find('.tv-channel-title__text').text();
-    channel.programs = [];
-    channel.logo = $channel.find('.b-tv-image__picture').css('background-image');
-    $channel.find('.tv-channel-events__item').each(function () {
-        var $program = $(this);
-        var program = {};
-        program.time = $program.find('.tv-event__time-text').text();
-        program.name = $program.find('.tv-event__title-inner').text();
-        channel.programs.push(program);
-        var bem = JSON.parse($program.find('.tv-event').attr('data-bem'));
-        program.genre = {};
-        program.genre.name = bem['tv-event'].genre;
-                switch (program.genre.name) {
-            case 'сериалы':
-                program.genre.key = 'serial';
-                break;
-            case 'фильмы':
-                program.genre.key = 'film';
-                break;
-            case 'спорт':
-                program.genre.key = 'sport';
-                break;
-            default:
-                program.genre.key = 'other';
-                break;
-        }
-
-    });
-    channels.push(channel);
-});
-console.log(JSON.stringify(channels));
-
-
 });
