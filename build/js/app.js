@@ -30,9 +30,7 @@ $(document).ready(function () {
             clearTimeout(counter);
             var $el = $(this);
             var $desc = $el.find('.program__desc');
-            $desc.fadeOut(300, function () {
-                var $desc = $el.find('.program__desc');
-            });
+            $desc.fadeOut(300);
         });
     })();
 
